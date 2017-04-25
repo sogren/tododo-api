@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
 gem 'devise_token_auth'
+gem 'omniauth'
 
 gem 'rack-cors', :require => 'rack/cors'
 
