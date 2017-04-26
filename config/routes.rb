@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'tasks#welcome'
   get 'api/tasks' => 'tasks#index'
   get 'api/tasks/:id' => 'tasks#show'
+  get '/api/change_task_status/:id' => 'tasks#change_status'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

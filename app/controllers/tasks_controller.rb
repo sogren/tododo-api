@@ -1,25 +1,31 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_task, only: [:show, :change_status]
+
   def welcome
 
   end
 
   def index
-    tasks = [ { id: 11, content: 'aernoan erga3ao iy5s', title: 'Mr. Nice' },
-              { id: 12, content: 'aernoan erga3ao iy5s', title: 'Narco' },
-              { id: 13, content: 'aernoan erga3ao iy5s', title: 'Bombasto' },
-              { id: 14, content: 'aernoan erga3ao iy5s', title: 'Celeritas' },
-              { id: 15, content: 'aernoan erga3ao iy5s', title: 'Magneta' },
-              { id: 16, content: 'aernoan erga3ao iy5s', title: 'RubberMan' },
-              { id: 17, content: 'aernoan erga3ao iy5s', title: 'Dynama' },
-              { id: 18, content: 'aernoan erga3ao iy5s', title: 'Dr IQ' },
-              { id: 19, content: 'aernoan erga3ao iy5s', title: 'Magma' },
-              { id: 20, content: 'aernoan erga3ao iy5s', title: 'Tornado' }
-            ]
+    tasks = current_user.tasks
     render json: tasks
   end
 
   def show
-    task = { id: 11, content: 'aernoan erga3ao iy5s', title: 'Mr. Nice' }
-    render json: task
+    render json: @task
+  end
+
+  def change_status
+    if @task.done? && @task.new_task! || @task.new_task? && @task.done!
+      render json: true
+    else
+      render json: false
+    end
+  end
+
+  private
+
+  def set_task
+    @task = Task.find(params[:id])
   end
 end

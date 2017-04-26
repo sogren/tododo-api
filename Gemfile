@@ -12,6 +12,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise_token_auth'
 gem 'omniauth'
 
+gem 'pry'
+
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
