@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
-  root 'tasks#welcome'
-  get 'api/tasks' => 'tasks#index'
-  get 'api/tasks/:id' => 'tasks#show'
-  get '/api/change_task_status/:id' => 'tasks#change_status'
+  namespace :api do
+    resources :tasks
+    get 'tasks' => 'tasks#index'
+    get 'tasks/:id' => 'tasks#show'
+    get 'change_task_status/:id' => 'tasks#change_status'
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
