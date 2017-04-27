@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   namespace :api do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :tasks
-      get 'tasks' => 'tasks#index'
-      get 'tasks/:id' => 'tasks#show'
       get 'change_task_status/:id' => 'tasks#change_status'
     end
   end
